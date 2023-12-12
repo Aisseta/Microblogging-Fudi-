@@ -28,8 +28,18 @@ Route::get('home', function () {
 
 
 Route::get('post', [PostController::class, 'index'])->name('post.index');
-//Route::get('{id}', [PostController::class, 'show'])->name('post.show');
-Route::post('/create',[PostController::class, 'create'])->name('post.create');
+Route::get('/onepost/{post}', [PostController::class, 'show'])->name('post.show');
+
+Route::get('/create', [PostController::class, 'create'])->name('create');
+
+Route::post('/store', [PostController::class, 'store'])->name('store');
+
+//Route::get('update', [PostController::class, 'update'])->name('post.update');
+
+//Route::get('', [PostController::class, 'delete'])->name('post.delete');
+
+
+
 
 
 

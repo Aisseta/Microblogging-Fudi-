@@ -22,9 +22,9 @@ class PostFactory extends Factory
         return [
 
             'title'=> $this->faker->words(5, true),
-            'caption'=> $this->faker->sentence(5),
+            'caption'=> $this->faker->sentence(2),
             'image'=>$this->faker->image,
-            "user_id" => User::inRandomOrder()->first(),
+            'user_id' => User::inRandomOrder()->first(),
         ];
     }
 }
