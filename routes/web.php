@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('home', function () {
     return view('home');
@@ -27,8 +25,13 @@ Route::get('home', function () {
 
 
 
-Route::get('post', [PostController::class, 'index'])->name('post.index');
+Route::get('/', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('post.index');
+
+
+
 Route::get('/onepost/{post}', [PostController::class, 'show'])->name('post.show');
+
+
 
 Route::get('/create', [PostController::class, 'create'])->name('create');
 

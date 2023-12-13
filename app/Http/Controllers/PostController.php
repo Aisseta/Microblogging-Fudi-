@@ -35,7 +35,7 @@ class PostController extends Controller
             'caption' => 'required',
         ]);
     
-        //$user = auth()->user();
+        $user = auth()->user()->id;
         
 
 
@@ -43,10 +43,14 @@ class PostController extends Controller
             'title' => $request->title,
             'caption' => $request->caption,
             'image' => time() . '.' . $request->image->getClientOriginalExtension(),
+            'user_id'=>$user, 
         ]);
     
         $request->image->storeAs('public/images', $post->image);
 
         return redirect()->route('post.index');
-    }    
+    } 
+    
+
+    
 }

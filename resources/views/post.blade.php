@@ -3,6 +3,8 @@
 
 <x-app-layout>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <a href="{{ route('create')}}"    class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm
+        sm:leading-5 resize-none focus:outline-none focus:border-blue-500">Add Post</a>
         @foreach($post as $post)
             <div class="bg-black p-4 rounded-lg shadow-md max-w-sm w-full mb-4">
                 <div class="h-screen overflow-y-scroll">
@@ -37,7 +39,7 @@
                             </div>
                             <!-- Image -->
                             <div class="mb-4">
-                                <img src="{{ asset('storage/images/' . $onepost->image) }}"  alt="Post Image" class="w-full h-48 object-cover rounded-md">
+                                <img src="{{ asset('storage/images/' . $post->image) }}"  alt="Post Image" class="w-full h-48 object-cover rounded-md">
                             </div>
                             <!-- Like and Comment Section -->
                             <div class="flex items-center justify-between text-gray-500">
