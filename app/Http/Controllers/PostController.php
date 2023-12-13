@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,20 +29,24 @@ class PostController extends Controller
 
     public function store(Request $request) {
   
-       $request->validate ([
-            "image" => 'required|image|max:1024',
-            "caption" => 'required',
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
+            'caption' => 'required',
         ]);
     
-        $post = new Post;
-
-        $post->caption = $request->input('caption');
-        $post->user_id = auth()->id(); // Associe le post à l'utilisateur connecté
-        $post->image = $request->file('image')->store('images/posts', 'public');
+        //$user = auth()->user();
         
-    
-        $post->save();
 
-        //return redirect(route("post.index"));
+
+        $post = Post::create([
+            'title' => $request->title,
+            'caption' => $request->caption,
+            'image' => time() . '.' . $request->image->getClientOriginalExtension(),
+        ]);
+    
+        $request->image->storeAs('public/images', $post->image);
+
+        return redirect()->route('post.index');
     }    
 }

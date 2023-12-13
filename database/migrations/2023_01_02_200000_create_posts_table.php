@@ -16,10 +16,24 @@ return new class extends Migration
             $table->string('title');
             $table->string('caption');
             $table->string('image')->nullable();
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
+           
         });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id');
+         
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
+    
+        
+     
     }
+
+  
+ 
 
     /**
      * Reverse the migrations.

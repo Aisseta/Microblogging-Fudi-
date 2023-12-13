@@ -32,7 +32,7 @@ Route::get('/onepost/{post}', [PostController::class, 'show'])->name('post.show'
 
 Route::get('/create', [PostController::class, 'create'])->name('create');
 
-Route::post('/store', [PostController::class, 'store'])->name('store');
+Route::post('/store', [PostController::class, 'store'])->name('post.store');
 
 //Route::get('update', [PostController::class, 'update'])->name('post.update');
 

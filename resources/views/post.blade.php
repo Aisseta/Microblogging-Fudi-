@@ -37,7 +37,7 @@
                             </div>
                             <!-- Image -->
                             <div class="mb-4">
-                                <img src="{{ asset('storage/images/'.$imageName) }}"  alt="Post Image" class="w-full h-48 object-cover rounded-md">
+                                <img src="{{ asset('storage/images/' . $onepost->image) }}"  alt="Post Image" class="w-full h-48 object-cover rounded-md">
                             </div>
                             <!-- Like and Comment Section -->
                             <div class="flex items-center justify-between text-gray-500">
