@@ -52,5 +52,10 @@ class PostController extends Controller
     } 
     
 
+    public function destroy (Post $post)
+    {
+        $post->delete(); //supprimer le post
+        return redirect()->route('post.index'); //redirection vers la page .index
+    }
     
 }

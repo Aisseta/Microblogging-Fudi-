@@ -1,22 +1,32 @@
 
-<!-- component -->
-
 <x-app-layout>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <a href="{{ route('create')}}"    class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm
-        sm:leading-5 resize-none focus:outline-none focus:border-blue-500">Add Post</a>
+        <div class="col-span-1 lg:col-span-2">
+            <!-- Infos de l'utilisateur connecté -->
+            <div class="bg-white p-4 rounded-md shadow-md mb-4">
+                <!-- Insérez ici les informations de l'utilisateur connecté -->
+                <span class="text-lg font-semibold">Bienvenue, {{ Auth::user()->name }}!</span>
+                <!-- Autres informations de l'utilisateur -->
+            </div>
+
+            <!-- Bouton pour créer un post -->
+            <a href="{{ route('create') }}" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 focus:outline-none focus:shadow-outline-blue">
+                Ajouter un Post
+            </a>
+        </div>
+
         @foreach($post as $post)
-            <div class="bg-black p-4 rounded-lg shadow-md max-w-sm w-full mb-4">
+            <div class="bg-white p-4 rounded-lg shadow-md max-w-sm w-full mb-4">
                 <div class="h-screen overflow-y-scroll">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        <div class="bg-white p-4 rounded-lg shadow-md max-w-sm mx-auto">
+                        <div class="bg-white p-4 rounded-lg shadow-md mx-auto">
                             <!-- User Info with Three-Dot Menu -->
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center space-x-2">
                                     <img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
                                     <div>
-                                        <p class="text-gray-800 font-semibold">John Doe</p>
-                                        <p class="text-gray-500 text-sm">Posted 2 hours ago</p>
+                                        <p class="text-gray-800 font-semibold">{{ $post->user->name }}</p>
+                                        <p class="text-gray-500 text-sm">{{ $post->created_at->format('F j, Y') }}</p>
                                     </div>
                                 </div>
                                 <div class="text-gray-500 cursor-pointer">
@@ -31,15 +41,15 @@
                                 </div>
                             </div>
                             <!-- Message -->
-                            <div class="mb-4 h-24 overflow-y-auto">
-                                <h1 class="text-gray-500"><a href="{{ route('post.show', ['post' => $post->id])}}">{{ $post->title }} </a></h1>
+                            <div class="mb-4">
+                                <h1 class="text-gray-800 text-lg font-semibold"><a href="{{ route('post.show', ['post' => $post->id])}}">{{ $post->title }} </a></h1>
                                 <p class="text-gray-500">{{ $post->caption }}<a href="" class="text-blue-600">#CuteKitten</a>
                                     <a href="" class="text-blue-600">#AdventureCat</a>
                                 </p>
                             </div>
                             <!-- Image -->
                             <div class="mb-4">
-                                <img src="{{ asset('storage/images/' . $post->image) }}"  alt="Post Image" class="w-full h-48 object-cover rounded-md">
+                                <img src="{{ asset('storage/images/' . $post->image) }}"  alt="Post Image" class="w-full h-56 object-cover rounded-md">
                             </div>
                             <!-- Like and Comment Section -->
                             <div class="flex items-center justify-between text-gray-500">

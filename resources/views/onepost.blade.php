@@ -1,99 +1,287 @@
-
-
 <x-app-layout>
-   <!-- component -->
-<!-- This is an example component -->
-<div class="bg-white overflow-hidden shadow-none">
-    <div class="grid grid-cols-3 min-w-full">
-
-        <div class="col-span-2 w-full">
-            <img class="w-full max-w-full min-w-full"
-                src="https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                alt="Description">
-        </div>
-
-        <div class="col-span-1 relative pl-4">
-            <header class="border-b border-grey-400">
-                <a href="#" class="block cursor-pointer py-4 flex items-center text-sm outline-none focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                    <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" class="h-9 w-9 rounded-full object-cover"
-                    alt="user" />
-                    <p class="block ml-2 font-bold">Paul</p>
-                </a>
-            </header>
-
-            <div >
-                <div class="pt-1">
-                    <div class="text-sm mb-2 flex flex-start items-center">
-                        <div>
-                            <a href="#" class="cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                <img class="h-8 w-8 rounded-full object-cover"
-                                src="https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                                alt="user" />
-                            </a>
-                        </div>
-                        <p class="font-bold ml-2">
-                            <a class="cursor-pointer">Joshua:</a>
-                            <span class="text-gray-700 font-medium ml-1">
-                                Good post
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div class="text-sm mb-2 flex flex-start items-center">
-                    <div>
-                        <a href="#" class="cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                            <img class="h-8 w-8 rounded-full object-cover"
-                            src="https://images.pexels.com/photos/3861456/pexels-photo-3861456.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-                            alt="user" />
-                        </a>
-                    </div>
-                    <p class="font-bold ml-2">
-                        <a class="cursor-pointer">Kesha:</a>
-                        <span class="text-gray-700 font-medium ml-1">
-                            This is amazing
-                        </span>
-                    </p>
-                </div>
+    
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+  
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: "Roboto", sans-serif;
+        background-color: #f0f0f0; /* Add your desired background color */
+        margin: 0;
+      }
+  
+      .wrapper {
+        width: 100%;
+        max-width: 800px; /* Set a maximum width as needed */
+        background-color: #ffffff; /* Add your desired wrapper background color */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add your desired box shadow */
+        border-radius: 16px;
+        margin: 20px;
+        box-sizing: border-box;
+      }
+  
+      .card {
+        padding: 20px;
+        border-radius: 16px;
+        background-color: #ffffff; /* Add your desired background color */
+        margin-bottom: 20px;
+      }
+  
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+  
+      .user-info {
+        display: flex;
+        align-items: center;
+      }
+  
+      .user-info a {
+        margin-right: 12px;
+      }
+  
+      .user-info img {
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+      }
+  
+      .user-info .user-details {
+        margin-left: 12px;
+      }
+  
+      .user-details a {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333333; /* Add your desired text color */
+        text-decoration: none;
+      }
+  
+      .user-details p {
+        color: #808080; /* Add your desired text color */
+        margin: 0;
+      }
+  
+      .post-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        color: #333333; /* Add your desired text color */
+      }
+  
+      .single-image {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 16px;
+      }
+  
+      .single-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+  
+      .post-content {
+        color: #666666; /* Add your desired text color */
+        margin-bottom: 16px;
+      }
+  
+      .likes-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+  
+      .likes-container a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #ff1493; /* Add your desired like icon color */
+        font-weight: bold;
+        font-size: 18px;
+        margin-right: 8px;
+      }
+  
+      .comment-input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+  
+      .comment-input input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #dddddd; /* Add your desired input border color */
+        background-color: #f5f5f5; /* Add your desired input background color */
+        color: #333333; /* Add your desired input text color */
+      }
+  
+      .comment-input button {
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        background-color: #4caf50; /* Add your desired button background color */
+        color: #ffffff; /* Add your desired button text color */
+        cursor: pointer;
+        margin-left: 8px;
+      }
+  
+      .comments-section {
+        padding-top: 16px;
+        border-top: 1px solid #dddddd; /* Add your desired border color */
+      }
+  
+      .comment {
+        margin-bottom: 16px;
+      }
+  
+      .comment-user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+  
+      .comment-user-info img {
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        object-fit: cover;
+        margin-right: 8px;
+      }
+  
+      .comment-user-info a {
+        font-weight: bold;
+        text-decoration: none;
+        color: #333333; /* Add your desired comment user info color */
+      }
+  
+      .comment-user-info span {
+        color: #808080; /* Add your desired comment user info color */
+      }
+  
+      .comment-text {
+        color: #666666; /* Add your desired comment text color */
+        margin-bottom: 8px;
+      }
+  
+      .comment-actions {
+        display: flex;
+        align-items: center;
+      }
+  
+      .comment-actions a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #ff1493; /* Add your desired comment action color */
+        font-weight: bold;
+        font-size: 14px;
+        margin-right: 8px;
+      }
+  
+      .reply-button {
+        padding: 8px;
+        border-radius: 8px;
+        border: none;
+        background-color: #4caf50; /* Add your desired reply button color */
+        color: #ffffff; /* Add your desired reply button text color */
+        cursor: pointer;
+      }
+  
+      .more-comments {
+        text-align: center;
+        margin-top: 16px;
+      }
+  
+      .more-comments a {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 8px;
+        background-color: #4caf50; /* Add your desired more comments button color */
+        color: #ffffff; /* Add your desired more comments button text color */
+        text-decoration: none;
+      }
+  
+      .footer {
+        width: 100%;
+        padding: 20px 0;
+        background-color: #333333; /* Add your desired footer background color */
+        color: #ffffff; /* Add your desired footer text color */
+        text-align: center;
+      }
+  
+      .footer p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div class="wrapper">
+  
+      <div class="card">
+        <div class="card-header">
+          <div class="user-info">
+            <a href="#">
+              <img src="https://via.placeholder.com/50" alt="User Avatar">
+            </a>
+            <div class="user-details">
+              <a href="#" class="username">John Doe</a>
+              <p class="timestamp">2 hours ago</p>
             </div>
-
-            <div class="absolute bottom-0 left-0 right-0 pl-4">
-                <div class="pt-4">
-                    <div class="mb-2">
-                        <div class="flex items-center">
-                            <span class="mr-3 inline-flex items-center cursor-pointer">
-                                <svg class="fill-heart text-gray-700 inline-block h-7 w-7 heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                </svg>
-                            </span>
-                            <span class="mr-3 inline-flex items-center cursor-pointer">
-                                <svg class="text-gray-700 inline-block h-7 w-7 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                </svg>
-                            </span>
-                        </div>
-                        <span class="text-gray-600 text-sm font-bold">2344 Likes</span>
-                    </div>
-                    <span class="block ml-2 text-xs text-gray-600">5 minutes</span>
-                </div>
-
-                <div class="pt-4 pb-1 pr-3">
-                    <div class="flex items-start">
-                        <textarea class="w-full resize-none outline-none appearance-none" aria-label="Agrega un comentario..." placeholder="Agrega un comentario..."  autocomplete="off" autocorrect="off" style="height: 36px;"></textarea>
-                        <button class="mb-2 focus:outline-none border-none bg-transparent text-blue-600">Publicar</button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <h2 class="post-title">{{ $onepost->title }}</h2>
+        <div class="single-image">
+          <img src="{{ asset('storage/images/' . $onepost->image) }}" alt="Description">
+        </div>
+        <p class="post-content">
+          {{ $onepost->caption }}
+        </p>
+        <div class="likes-container">
+          <a href="#" class="like-icon">Like</a>
+          <p class="like-count">123 Likes</p>
+        </div>
+        <form action="{{ route('post.delete', $onepost->id) }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="submit">Supprimer le post</button>
+      </form>
+        <div class="comment-input">
+          <input type="text" placeholder="Add a comment...">
+          <button>Post</button>
+        </div>
+        <div class="comments-section">
+          <div class="comment">
+            <div class="comment-user-info">
+              <a href="#">
+                <img src="https://via.placeholder.com/36" alt="Commenter Avatar">
+              </a>
+              <div>
+                <a href="#" class="comment-username">Commenter Name</a>
+                <span class="comment-timestamp">1 hour ago</span>
+              </div>
+            </div>
+            <p class="comment-text">The comment text goes here. You can add more comments as needed.</p>
+            <div class="comment-actions">
+              <a href="#" class="like-comment">Like</a>
+              <a href="#" class="reply-button">Reply</a>
+            </div>
+          </div>
+          <!-- More comments go here -->
+        </div>
+      </div>
+  
     </div>
-</div>
-	
-</x-app-layout> 
-
-
-
-
-
-
-
-<h1></h1>
-<p></p>
+  
+  </body>
+  
+</x-app-layout>
