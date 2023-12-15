@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('home', function () {
-    return view('home');
+Route::get('/', function () {
+    return view('welcome');
 });
 
 
 
-Route::get('/', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('post.index');
+Route::get('/index', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('post.index');
 
 
 
@@ -38,6 +38,11 @@ Route::get('/create', [PostController::class, 'create'])->name('create');
 Route::post('/store', [PostController::class, 'store'])->name('post.store');
 
 Route::delete('/delete/{post}', [PostController::class, 'destroy'])->name('post.delete');
+
+
+
+Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
+
 
 //Route::get('update', [PostController::class, 'update'])->name('post.update');
 

@@ -55,4 +55,11 @@ class User extends Authenticatable
     return $this->posts()->create($data);
     }
 
+    // app/Models/User.php
+
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class, 'likes');
+    }
+
 }

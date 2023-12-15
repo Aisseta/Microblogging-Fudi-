@@ -1,13 +1,19 @@
 <x-app-layout>
-
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center h-screen">
 
         <!-- Form Container -->
-        <div class="bg-white p-8 rounded-md shadow-md w-full md:w-2/3 lg:w-3/4 xl:w-1/2">
+        <div class="bg-white p-8 rounded-md shadow-md w-full md:w-2/3 lg:w-3/4 xl:w-1/2 -">
 
-            <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data" style="
+                margin: 51px;
+                padding: 89PX;">
                 @csrf
-
+                <h1 style="text-align:center;  
+                font-size:30px;
+                font-weight:700;
+                color:rgb(172, 63, 23);
+                text-shadow:2px 2px 4px rgba(223, 96, 28, 0.1),
+                3px 4px 4px rgba(232, 142, 72, 0.15),">CREATE</h1>
                 <div class="mb-6">
                     <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
                     <input type="text" id="title" name="title"
@@ -48,7 +54,7 @@
                 <div class="flex items-center justify-between">
                     <button type="submit"
                         class="flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"
-                        style="background-color:blueviolet;">
+                        style="background-color:rgb(240, 165, 115);">
                         Submit Post
                         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"
                             id="send" fill="#fff">
@@ -67,3 +73,4 @@
     </div>
 
 </x-app-layout>
+

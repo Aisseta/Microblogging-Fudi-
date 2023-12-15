@@ -1,5 +1,5 @@
 <x-app-layout>
-    
+      
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
   
@@ -234,8 +234,8 @@
               <img src="https://via.placeholder.com/50" alt="User Avatar">
             </a>
             <div class="user-details">
-              <a href="#" class="username">John Doe</a>
-              <p class="timestamp">2 hours ago</p>
+              <a href="#" class="username">{{ $onepost->user->name }}</a>
+              <p class="timestamp">{{ $onepost->created_at->format('F j, Y') }}</p>
             </div>
           </div>
         </div>
@@ -247,8 +247,12 @@
           {{ $onepost->caption }}
         </p>
         <div class="likes-container">
-          <a href="#" class="like-icon">Like</a>
-          <p class="like-count">123 Likes</p>
+            <br/>
+            <form method="post" action="{{ route('posts.like', ['post' => $onepost->id]) }}">
+                @csrf
+                
+                <button type="submit" class="like-icon" > {{ $onepost->likers()->count() }}  Like</button>
+            </form>
         </div>
         <form action="{{ route('post.delete', $onepost->id) }}" method="POST">
           @csrf

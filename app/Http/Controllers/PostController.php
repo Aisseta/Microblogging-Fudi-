@@ -57,5 +57,21 @@ class PostController extends Controller
         $post->delete(); //supprimer le post
         return redirect()->route('post.index'); //redirection vers la page .index
     }
+
+    public function like(Post $post)
+    {
+        $user = auth()->user();
+         // Récupérez l'instance complète de l'utilisateur
+        if (!$user->likes()->where('post_id', $post->id)->exists()) {
+            
+             $user->likes()->attach($post);
+        };
+        
+    
+        return redirect()->back();
+    }
+    
+
+
     
 }
