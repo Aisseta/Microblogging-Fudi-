@@ -5,10 +5,10 @@
         <div class="bg-white p-4 rounded-md shadow-md mb-4">
             <!-- Avatar et informations de l'utilisateur -->
             <div class="flex items-center space-x-4">
-                <img src="https://placekitten.com/40/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+                <img src="/avatars/{{ Auth::user()->avatar }}" alt="User Avatar" class="w-8 h-8 rounded-full">
                 <div>
                     <span class="text-lg font-semibold">{{ Auth::user()->name }}</span>
-                    <p class="text-black-800 text-sm" class="font-size:20PX;">Explorateur culinaire 🍜 | Amateur de saveurs du monde 🌎 | Créateur de délices dans ma cuisine 🍳 | En quête perpétuelle du plat parfait | Partagez vos recettes préférées avec moi! 📸 #FoodieLife #GourmetAdventures"</p>
+                    <p class="text-black-800 text-sm" class="font-size:20PX;">{{ Auth::user()->biography }}</p>
                 </div>
             </div>
         </div>
@@ -70,12 +70,15 @@
                             <!-- Like and Comment Section -->
                             <div class="flex items-center justify-between text-gray-500">
                                 <div class="flex items-center space-x-2">
+                                    <form method="post" action="{{ route('posts.like', ['post' => $post->id]) }}">
+                                        @csrf
                                     <button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
                                         <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M12 21.35l-1.45-1.32C6.11 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-4.11 6.86-8.55 11.54L12 21.35z" />
                                         </svg>
                                         {{ $post->likers()->count() }} 
                                     </button>
+                                </form>
                                 </div>
                                 <button class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1">
                                     <svg width="22px" height="22px" viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">

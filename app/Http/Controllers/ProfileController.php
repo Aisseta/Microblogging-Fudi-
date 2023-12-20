@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class ProfileController extends Controller
 {
@@ -57,4 +58,36 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image',
+        ]);
+  
+        $avatarName = time().'.'.$request->avatar->getClientOriginalExtension();
+        $request->avatar->move(public_path('avatars'), $avatarName);
+  
+        Auth()->user()->update(['avatar'=>$avatarName]);
+  
+        return back()->with('success', 'Avatar updated successfully.');
+    }
+
+    public function storebio(Request $request)
+    {
+      
+
+        $request->validate([
+            'biography' => 'required',
+        ]);
+  
+    
+        $bio = $request->biography;
+  
+        Auth()->user()->update(['biography'=>$bio]);
+  
+        return view('/dashboard');
+    }
+
+
 }

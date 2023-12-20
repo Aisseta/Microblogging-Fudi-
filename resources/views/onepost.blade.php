@@ -259,8 +259,12 @@
           @method('DELETE')
           <button type="submit">Supprimer le post</button>
       </form>
+
+      <form method="post" action="{{ route('add.comment', ['post' => $onepost->id]) }}">
+        @csrf
         <div class="comment-input">
-          <input type="text" placeholder="Add a comment...">
+          <input type="hidden" name="post_id" value="{{ $onepost->id }}">
+          <input type="text" name="content" placeholder="Add a comment...">
           <button>Post</button>
         </div>
         <div class="comments-section">
@@ -282,6 +286,7 @@
           </div>
           <!-- More comments go here -->
         </div>
+        </form>
       </div>
   
     </div>

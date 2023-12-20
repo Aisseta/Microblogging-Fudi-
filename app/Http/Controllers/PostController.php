@@ -15,7 +15,6 @@ class PostController extends Controller
         ]);
     }
 
-
     public function create() {
  
         return view('create');
@@ -44,6 +43,7 @@ class PostController extends Controller
             'caption' => $request->caption,
             'image' => time() . '.' . $request->image->getClientOriginalExtension(),
             'user_id'=>$user, 
+
         ]);
     
         $request->image->storeAs('public/images', $post->image);
@@ -61,17 +61,15 @@ class PostController extends Controller
     public function like(Post $post)
     {
         $user = auth()->user();
-         // Récupérez l'instance complète de l'utilisateur
-        if (!$user->likes()->where('post_id', $post->id)->exists()) {
-            
-             $user->likes()->attach($post);
-        };
         
-    
+        if(!$user->likes()->where('post_id', $post->id)->exists()) {
+             $user->likes()->attach($post);
+        }else{
+
+            $user->likes()->detach($post);
+        }
+           
         return redirect()->back();
-    }
-    
-
-
-    
+        }    
 }
+

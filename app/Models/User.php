@@ -22,8 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar', 
+        'biography',
     ];
-
+    
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -32,8 +34,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+       
     ];
-
+    
     /**
      * The attributes that should be cast.
      *
@@ -57,9 +60,8 @@ class User extends Authenticatable
 
     // app/Models/User.php
 
-    public function likes()
-    {
-        return $this->belongsToMany(Post::class, 'likes');
+    public function likes(){
+        return $this->belongsToMany(Post::class,'likes');
     }
 
 }
